@@ -1,31 +1,12 @@
-const { readFileSync } = require("fs");
+const { ApolloServer } = require('@apollo/server');
+const { ApolloServerPluginInlineTraceDisabled } = require('@apollo/server/plugin/disabled');
+const { buildSubgraphSchema } = require('@apollo/subgraph');
 
-const gql = require("graphql-tag");
-const { ApolloServer } = require("@apollo/server");
-const { startStandaloneServer } = require("@apollo/server/standalone");
-const { buildSubgraphSchema } = require("@apollo/subgraph");
+const resolvers = require('./resolvers');
+const { typeDefs } = require('./typeDefs');
 
-const resolvers = require("./resolvers");
-const port = process.env.PORT ?? 4004;
-
-async function main() {
-  const typeDefs = gql(
-    readFileSync("schema.graphql", {
-      encoding: "utf-8",
-    })
-  );
-
-  const server = new ApolloServer({
-    schema: buildSubgraphSchema({ typeDefs, resolvers }),
-    introspection: true,
-  });
-  const { url } = await startStandaloneServer(server, {
-    listen: { port },
-    context({ req }) {
-      return { headers: req.headers };
-    },
-  });
-  console.log(`🚀  Subgraph ready at ${url}`);
-}
-
-main();
+export const server = new ApolloServer({
+  schema: buildSubgraphSchema({ typeDefs, resolvers }),
+  plugins: [ApolloServerPluginInlineTraceDisabled],
+  introspection: true
+});

@@ -4,11 +4,14 @@
   "private": true,
   "engines": {
     "npm": ">=6.0.0",
-    "node": ">=14.0.0 <17.0.0"
+    "node": ">=14.0.0"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
+    "@apollo/server": "^4.1.1",
     "@apollo/space-kit": "^9.3.1",
+    "@apollo/subgraph": "latest",
+    "@as-integrations/next": "^1.2.0",
     "@chakra-ui/react": "^1.6.10",
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
@@ -16,7 +19,8 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "framer-motion": "^4.1.17",
-    "graphql": "^16.5.0",
+    "graphql": "latest",
+    "graphql-tag": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",

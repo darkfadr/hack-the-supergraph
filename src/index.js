@@ -11,15 +11,14 @@ import {
 } from '@apollo/client';
 
 import theme from './theme.js';
-import {ChakraProvider} from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const httpLink = new HttpLink({
-  uri: 'https://main--hack-the-e-commerce.apollographos.net/graphql'
-  // uri: 'https://apollo-router-railway-production.up.railway.app/'
+  uri: 'https://main--hacking-the-supergraph.apollographos.net/graphql'
 });
 
 const delayMiddleware = new ApolloLink((operation, forward) => {
-  operation.setContext(({headers = {}}) => {
+  operation.setContext(({ headers = {} }) => {
     const delay = localStorage.getItem('apollo-x-custom-delay') ?? 1000;
     return {
       headers: {

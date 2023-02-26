@@ -2,9 +2,9 @@
 /** @type {import('@jest/types').Config.InitialOptions} */
 const config = {
   testEnvironment: 'node',
-  roots: ['src'],
+  roots: ['./'],
   testRegex: '/__tests__/.*.test.js$',
-  verbose: true,
+  verbose: true
 };
 
 module.exports = config;

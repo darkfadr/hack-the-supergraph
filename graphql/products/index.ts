@@ -2,11 +2,11 @@ const { ApolloServer } = require('@apollo/server');
 const { ApolloServerPluginInlineTraceDisabled } = require('@apollo/server/plugin/disabled');
 const { buildSubgraphSchema } = require('@apollo/subgraph');
 
-const resolvers = require('./resolvers');
-const typeDefs = require('./typeDefs');
+import typeDefs from './typeDef';
+import resolvers from './resolvers';
 
 export const server = new ApolloServer({
   schema: buildSubgraphSchema({ typeDefs, resolvers }),
-  plugins: [ApolloServerPluginInlineTraceDisabled],
+  plugins: [ApolloServerPluginInlineTraceDisabled()],
   introspection: true
 });
